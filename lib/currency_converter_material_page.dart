@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 
 
-class CurrencyConverterMaterialPage extends StatelessWidget {
+
+class CurrencyConverterMaterialPage extends StatefulWidget{
   const CurrencyConverterMaterialPage({super.key});
+
+  @override
+  State<CurrencyConverterMaterialPage> createState()  => _CurrencyConverterMaterialPage();
+}
+
+class _CurrencyConverterMaterialPage extends State<CurrencyConverterMaterialPage>{
+
+  double result = 0;
+
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,65 +27,79 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
     );
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('0',
+        appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          title: const Text('Currency Converter',
             style: TextStyle(
-              fontSize: 45,
               fontWeight: FontWeight.bold,
-              color: Colors.white
             ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: TextField(
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true
-                ),
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Please enter amount in USD',
-                  hintStyle: const TextStyle(
-                    color: Colors.black26,
-                    fontSize: 18
+          ),
+          elevation: 0,
+        ),
+        backgroundColor: Colors.blueGrey,
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('INR $result',
+                    style: const TextStyle(
+                        fontSize: 45,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
+                    ),
                   ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusedBorder: border,
-                  enabledBorder: border,
-                  prefixIcon: const Icon(Icons.monetization_on_outlined),
-                  prefixIconColor: Colors.black,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextButton(onPressed: () =>
-                  debugPrint('button clicked'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)
-                    )
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    child: TextField(
+                      controller: textEditingController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true
+                      ),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: 'Please enter amount in USD',
+                        hintStyle: const TextStyle(
+                            color: Colors.black26,
+                            fontSize: 18
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        focusedBorder: border,
+                        enabledBorder: border,
+                        prefixIcon: const Icon(Icons.monetization_on_outlined),
+                        prefixIconColor: Colors.black,
+                      ),
+                    ),
                   ),
-                  child: const Text('Convert!')),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextButton(onPressed: () {
+                      setState(() {
+                        result = double.parse(textEditingController.text) * 80;
+                      });
+                      textEditingController.clear();
+                    },
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)
+                            )
+                        ),
+                        child: const Text('Convert!')),
+                  )
+                ]
             )
-          ]
         )
-      )
     );
   }
-}
 
+}
 
 
 
