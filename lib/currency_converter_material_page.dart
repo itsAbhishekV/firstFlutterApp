@@ -16,6 +16,12 @@ class _CurrencyConverterMaterialPage extends State<CurrencyConverterMaterialPage
   final TextEditingController textEditingController = TextEditingController();
 
   @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     final border = OutlineInputBorder(
@@ -43,7 +49,7 @@ class _CurrencyConverterMaterialPage extends State<CurrencyConverterMaterialPage
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('INR ${result != 0 ? result.toStringAsFixed(2) : 0}',
+                    Text('INR ${result != 0 ? result.toStringAsFixed(2) : result.toStringAsFixed(0)}',
                       style: const TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
