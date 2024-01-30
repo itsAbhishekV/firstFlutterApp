@@ -38,19 +38,20 @@ class _CurrencyConverterMaterialPage extends State<CurrencyConverterMaterialPage
         ),
         backgroundColor: Colors.blueGrey,
         body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('INR $result',
-                    style: const TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('INR ${result != 0 ? result.toStringAsFixed(2) : 0}',
+                      style: const TextStyle(
+                          fontSize: 45,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
+                      ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    child: TextField(
+                    const SizedBox(height: 10.0,),
+                    TextField(
                       controller: textEditingController,
                       keyboardType: const TextInputType.numberWithOptions(
                           decimal: true
@@ -74,10 +75,8 @@ class _CurrencyConverterMaterialPage extends State<CurrencyConverterMaterialPage
                         prefixIconColor: Colors.black,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextButton(onPressed: () {
+                    const SizedBox(height: 10.0,),
+                    TextButton(onPressed: () {
                       setState(() {
                         result = double.parse(textEditingController.text) * 80;
                       });
@@ -91,9 +90,9 @@ class _CurrencyConverterMaterialPage extends State<CurrencyConverterMaterialPage
                                 borderRadius: BorderRadius.circular(5)
                             )
                         ),
-                        child: const Text('Convert!')),
-                  )
-                ]
+                        child: const Text('Convert!'))
+                  ]
+              ),
             )
         )
     );
