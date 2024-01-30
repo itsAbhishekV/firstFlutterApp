@@ -7,7 +7,6 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final border = OutlineInputBorder(
-
       borderSide: const BorderSide(
           width: 2.0,
           style: BorderStyle.solid,
@@ -27,23 +26,30 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 45,
               color: Colors.white60,
-            ),),
-            TextField(
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),
-              decoration: InputDecoration(
-                focusedBorder: border,
-                enabledBorder: border,
-                hintText:'Enter amount in USD',
-                hintStyle: const TextStyle(
-                  color: Colors.black,
+            ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              child: TextField(
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true
                 ),
-                filled: true,
-                fillColor: Colors.white60,
-                prefixIconColor: Colors.black,
-                prefixIcon: const Icon(Icons.monetization_on_outlined),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                decoration: InputDecoration(
+                  focusedBorder: border,
+                  enabledBorder: border,
+                  hintText:'Enter amount in USD',
+                  hintStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  filled: true,
+                  fillColor: Colors.white60,
+                  prefixIconColor: Colors.black,
+                  prefixIcon: const Icon(Icons.monetization_on_outlined),
+                ),
               ),
             )
           ]
